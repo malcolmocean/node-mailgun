@@ -1,13 +1,18 @@
 {
-  "name": "mailgun",
-  "version": "0.5.1",
+  "name": "mailgunplus",
+  "version": "0.6.0",
   "description": "Mailgun for Node.js",
   "author": "shz",
   "repository": {
     "type": "git",
-    "url": "git@github.com:shz/node-mailgun.git"
+    "url": "git@github.com:malcolmocean/node-mailgun.git"
   },
   "main": "./mailgun",
-  "homepage": "http://github.com/shz/node-mailgun",
-  "engine": "node"
+  "homepage": "http://github.com/malcolmocean/node-mailgun",
+  "engine": "node",
+  "contributors": [{
+    "name": "Malcolm Ocean",
+    "email:": "malcolm@malcolmocean.com",
+    "url": "http://malcolmocean.com/"
+  }]
 }

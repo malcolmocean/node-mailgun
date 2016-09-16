@@ -20,8 +20,6 @@
 // THE SOFTWARE.
 //
 
-// TODO - better error handling on requests
-
 // Dirt simple includes.  Nice that we can keep things simple :)
 var https = require('https'),
     querystring = require('querystring');
@@ -246,11 +244,14 @@ Mailgun.prototype.createRoute = function(pattern, destination, callback) {
 
       if (res.statusCode == 201) {
         var id = xre('id').exec(data)[1];
-
         callback && callback(undefined, id);
       } else {
         var message = xre('message').exec(data);
-        callback && callback(new Error(message ? message[1] : data));
+        callback && callback({
+          status: res.statusCode,
+          res: res,
+          error: new Error(message ? message[1] : data)
+        });
       }
     };
   }).end(data);
