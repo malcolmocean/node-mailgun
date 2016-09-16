@@ -1,22 +1,20 @@
 # node-mailgun
 
 This library provides simple access to Mailgun's API for node.js applications.
-It's MIT licensed, and being used in production over at [Hipsell](http://hipsell.com).
+It's MIT licensed, and being used in production in my app [Complice](https://complice.co/).
+
+It was forked from shz's package `mailgun`, and at the moment works the same except it has more details in error messages. I've been bolting on improvements in the Complice code for awhile, but for this one I needed to modify the source of this package. I may include other improvements here later&mdash;particularly a sendHtml method.
+
+Note that most of what's written below is from `shz` in 2014. I don't vouch for its accuracy.
 
 ## Installation
 
 ```sh
-$ npm install mailgun
+$ npm install mailgunplus
 ```
 
 Or you can just throw `mailgun.js` into your application.  There are
 no dependencies outside of node's standard library.
-
-**Note:** `master` on Github is going to be untested/unstable at times,
-          as this is a small enough library that I don't want to bother
-          with a more complicated repo structure.  As such, you should
-          really only rely on the version of `mailgun` in `npm`, as
-          I'll only ever push stable and tested code there.
 
 ## Usage
 
@@ -32,7 +30,7 @@ Access to the API is done through a Mailgun object.  It's instantiated
 like so:
 
 ```js
-var Mailgun = require('mailgun').Mailgun;
+var Mailgun = require('mailgunplus').Mailgun;
 var mg = new Mailgun('api-key');
 ```
 
@@ -101,9 +99,8 @@ sendRaw(sender, recipients, rawBody, [servername], [callback(err)])
                   Otherwise, it should be set to the server you want to
                   send from.
  * `callback` - Callback to be fired when the email is done being sent.  This
-                should take a single parameter, `err`, that will be set to
-                the status code of the API HTTP response code  if the email
-                failed to send; on success, `err` will be `undefined`.
+                should take a single parameter, `err`, formatted as `{status: Number, res: Object, message: String}` if the email failed to send; on success,
+                `err` will be `undefined`.
 
 #### Example
 
